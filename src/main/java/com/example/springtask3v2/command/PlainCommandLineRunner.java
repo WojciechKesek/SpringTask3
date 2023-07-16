@@ -10,9 +10,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class PlainCommandLineRunner implements CommandLineRunner {
 
-    @Autowired
-    @Qualifier("plainDummyLogger")
-    private DummyLogger dummyLogger;
+    private final DummyLogger dummyLogger;
+
+    public PlainCommandLineRunner(@Qualifier("plainDummyLogger")DummyLogger dummyLogger) {
+        this.dummyLogger = dummyLogger;
+    }
+
+
     @Override
     public void run(String... args) throws Exception {
         dummyLogger.sayHello();
